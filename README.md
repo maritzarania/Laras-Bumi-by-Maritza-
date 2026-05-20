@@ -1,6 +1,5 @@
 # Laras-Bumi-by-Maritza-
-Tugas Aptek
-<!DOCTYPE html>
+<!Tugas Aptek html>
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
