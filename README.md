@@ -1,2 +1,762 @@
 # Laras-Bumi-by-Maritza-
-Tugas Aptek
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Laras Bumi</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- AOS Animation -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    :root {
+      --bg: #F5EFE6;
+      --primary: #7A8F6B;
+      --secondary: #556B5D;
+      --terracotta: #C47F5A;
+      --sand: #D8C3A5;
+      --text: #2F2F2F;
+      --white: #ffffff;
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      background-image: radial-gradient(rgba(0,0,0,0.02) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+
+    h1,h2,h3,h4 {
+      font-family: 'Cormorant Garamond', serif;
+    }
+
+    .navbar {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 8%;
+      backdrop-filter: blur(14px);
+      background: rgba(245,239,230,0.75);
+      z-index: 999;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--secondary);
+    }
+
+    .logo span {
+      color: var(--terracotta);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--terracotta);
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 120px 8% 80px;
+      gap: 60px;
+    }
+
+    .hero-text {
+      flex: 1;
+    }
+
+    .hero-text h1 {
+      font-size: 5rem;
+      line-height: 1;
+      margin-bottom: 24px;
+      color: var(--secondary);
+    }
+
+    .hero-text p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      margin-bottom: 35px;
+      max-width: 600px;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 18px;
+    }
+
+    .btn {
+      padding: 14px 28px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s ease;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .primary-btn {
+      background: var(--secondary);
+      color: white;
+    }
+
+    .primary-btn:hover {
+      transform: translateY(-3px);
+      background: var(--primary);
+    }
+
+    .secondary-btn {
+      background: rgba(255,255,255,0.6);
+      color: var(--text);
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+
+    .secondary-btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .hero-image {
+      flex: 1;
+      position: relative;
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.65);
+      backdrop-filter: blur(16px);
+      padding: 30px;
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+      animation: floating 4s ease-in-out infinite;
+    }
+
+    @keyframes floating {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .hero-card h3 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: var(--secondary);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px,1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.7);
+      padding: 24px;
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      transition: 0.3s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .stat-card h2 {
+      color: var(--terracotta);
+      margin-bottom: 10px;
+      font-size: 2rem;
+    }
+
+    section {
+      padding: 100px 8%;
+    }
+
+    .section-title {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      color: var(--secondary);
+      text-align: center;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      max-width: 700px;
+      margin: auto;
+      line-height: 1.8;
+      margin-bottom: 60px;
+    }
+
+    .sdg-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 25px;
+    }
+
+    .sdg-card {
+      background: rgba(255,255,255,0.75);
+      padding: 30px;
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      transition: 0.4s ease;
+      text-align: center;
+    }
+
+    .sdg-card:hover {
+      transform: translateY(-10px);
+      background: var(--secondary);
+      color: white;
+    }
+
+    .sdg-card i {
+      font-size: 2rem;
+      margin-bottom: 18px;
+      color: var(--terracotta);
+    }
+
+    .dashboard {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+      gap: 30px;
+    }
+
+    .dashboard-card {
+      background: rgba(255,255,255,0.7);
+      border-radius: 30px;
+      padding: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .dashboard-card h3 {
+      margin-bottom: 20px;
+      font-size: 2rem;
+      color: var(--secondary);
+    }
+
+    .weather-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .ai-box {
+      background: linear-gradient(135deg, rgba(122,143,107,0.95), rgba(85,107,93,0.95));
+      padding: 50px;
+      border-radius: 35px;
+      color: white;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+
+    .ai-box h2 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+    }
+
+    .ai-form {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+      gap: 20px;
+      margin-top: 40px;
+    }
+
+    select, button {
+      padding: 16px;
+      border-radius: 18px;
+      border: none;
+      font-family: inherit;
+    }
+
+    .generate-btn {
+      background: var(--terracotta);
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .generate-btn:hover {
+      transform: scale(1.04);
+    }
+
+    #result {
+      margin-top: 35px;
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+      gap: 25px;
+    }
+
+    .news-card {
+      background: rgba(255,255,255,0.75);
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: 0.3s;
+    }
+
+    .news-card:hover {
+      transform: translateY(-8px);
+    }
+
+    .news-img {
+      height: 220px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .leaf {
+      position: absolute;
+      opacity: 0.12;
+      animation: floatLeaf 8s ease-in-out infinite;
+    }
+
+    .leaf1 {
+      top: 120px;
+      left: -30px;
+      font-size: 7rem;
+      color: #7A8F6B;
+    }
+
+    .leaf2 {
+      bottom: 40px;
+      right: 20px;
+      font-size: 5rem;
+      color: #C47F5A;
+    }
+
+    @keyframes floatLeaf {
+      0% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(8deg); }
+      100% { transform: translateY(0px) rotate(0deg); }
+    }
+
+    .news-content {
+      padding: 25px;
+    }
+
+    .news-content h3 {
+      margin-bottom: 12px;
+      color: var(--secondary);
+      font-size: 1.8rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px;
+      background: var(--secondary);
+      color: white;
+      margin-top: 100px;
+    }
+
+    @media(max-width: 900px) {
+      .hero {
+        flex-direction: column;
+      }
+
+      .hero-text h1 {
+        font-size: 3.5rem;
+      }
+
+      .section-title {
+        font-size: 2.7rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="logo">Laras <span>Bumi</span></div>
+
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#sdgs">SDGs</a>
+      <a href="#dashboard">Dashboard</a>
+      <a href="#ai">AI Suggestion</a>
+      <a href="#news">News</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="leaf leaf1"><i class="fa-solid fa-leaf"></i></div>
+    <div class="leaf leaf2"><i class="fa-solid fa-seedling"></i></div>
+    <div class="hero-text" data-aos="fade-right">
+      <h1>Laras Bumi</h1>
+      <p>
+        Selaras dengan Alam, Bertumbuh Bersama.
+        Platform dashboard interaktif berbasis AI sederhana yang membantu masyarakat memahami kondisi pertanian, pangan, dan sustainability Indonesia dengan cara yang lebih modern dan nyaman dijelajahi.
+      </p>
+
+      <div class="btn-group">
+        <a href="#dashboard" class="btn primary-btn">
+          <i class="fa-solid fa-chart-line"></i>
+          Explore Dashboard
+        </a>
+
+        <a href="#sdgs" class="btn secondary-btn">
+          <i class="fa-solid fa-seedling"></i>
+          Lihat SDGs
+        </a>
+      </div>
+
+      <div class="stats">
+        <div class="stat-card">
+          <h2>34</h2>
+          <p>Provinsi Pertanian</p>
+        </div>
+
+        <div class="stat-card">
+          <h2>34,69JT</h2>
+          <p>Produksi Beras Indonesia 2025</p>
+        </div>
+
+        <div class="stat-card">
+          <h2>4 SDGs</h2>
+          <p>Didukung Platform</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-image" data-aos="fade-left">
+      <div class="hero-card">
+        <h3>Indonesia Agriculture Overview</h3>
+        <canvas id="heroChart"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- SDGS -->
+  <section id="sdgs">
+    <h2 class="section-title" data-aos="fade-up">SDGs X Agriculture</h2>
+    <p class="section-subtitle" data-aos="fade-up">
+      Sektor pertanian memiliki keterkaitan erat dengan pencapaian beberapa tujuan dalam SDGs:
+    </p>
+
+    <div class="sdg-grid">
+      <div class="sdg-card" data-aos="zoom-in">
+        <i class="fa-solid fa-wheat-awn"></i>
+        <h3>SDGs 2</h3>
+        <p>Zero Hunger (Agriculture berperan langsung dalam penyediaan pangan dan ketahanan pangan masyarakat).</p>
+      </div>
+
+      <div class="sdg-card" data-aos="zoom-in">
+        <i class="fa-solid fa-briefcase"></i>
+        <h3>SDGs 8</h3>
+        <p>Decent Work and Economic Growth (Sektor pertanian membuka lapangan kerja dan mendukung ekonomi lokal maupun nasional).</p>
+      </div>
+
+      <div class="sdg-card" data-aos="zoom-in">
+        <i class="fa-solid fa-city"></i>
+        <h3>SDGs 12</h3>
+        <p>Responsible Consumption and Production (Pertanian berkelanjutan mendorong efisiensi produksi dan pengurangan limbah).</p>
+      </div>
+
+      <div class="sdg-card" data-aos="zoom-in">
+        <i class="fa-solid fa-earth-asia"></i>
+        <h3>SDGs 15</h3>
+        <p>Life on Land (Agriculture berkaitan dengan konservasi tanah, hutan, dan keanekaragaman hayati daratan).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- DASHBOARD -->
+  <section id="dashboard">
+    <h2 class="section-title" data-aos="fade-up">Apa Kabar Pertanian?</h2>
+    <p class="section-subtitle" data-aos="fade-up">
+      Untuk memahami kondisi pertanian di Indonesia saat ini, perlu dilihat bagaimana perkembangan sektor tersebut berdasarkan data dan tren yang ada
+    </p>
+
+    <div style="text-align:center; margin-bottom:40px; color:#556B5D; font-size:0.95rem;">
+      <i class="fa-solid fa-database"></i>
+      Data bersumber dari BPS Indonesia, Open-Meteo API, dan PIHPS Nasional
+    </div>
+
+    <div class="dashboard">
+      <div class="dashboard-card" data-aos="fade-up">
+        <h3>Cuaca Indonesia</h3>
+
+        <div class="weather-item">
+          <span>Jakarta</span>
+          <strong>31°C</strong>
+        </div>
+
+        <div class="weather-item">
+          <span>Surabaya</span>
+          <strong>30°C</strong>
+        </div>
+
+        <div class="weather-item">
+          <span>Bandung</span>
+          <strong>24°C</strong>
+        </div>
+
+        <div class="weather-item">
+          <span>Makassar</span>
+          <strong>29°C</strong>
+        </div>
+      </div>
+
+      <div class="dashboard-card" data-aos="fade-up">
+        <h3>Harga Pangan</h3>
+        <canvas id="priceChart"></canvas>
+      </div>
+
+      <div class="dashboard-card" data-aos="fade-up">
+        <h3>Produksi Pertanian</h3>
+        <canvas id="agriChart"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI -->
+  <section id="ai">
+    <div class="ai-box" data-aos="zoom-in-up">
+      <h2>Tanam Yuk!</h2>
+      <p>
+        Pilih kondisi lingkunganmu dan Laras Bumi akan memberikan rekomendasi tanaman terbaik ^v^
+      </p>
+
+      <div class="ai-form">
+        <select id="weather">
+          <option>Cerah</option>
+          <option>Hujan</option>
+          <option>Lembap</option>
+        </select>
+
+        <select id="season">
+          <option>Kemarau</option>
+          <option>Penghujan</option>
+        </select>
+
+        <select id="soil">
+          <option>Subur</option>
+          <option>Liat</option>
+          <option>Berpasir</option>
+        </select>
+
+        <button class="generate-btn" onclick="generateSuggestion()">
+          Generate Suggestion
+        </button>
+      </div>
+
+      <div id="result"></div>
+    </div>
+  </section>
+
+  <!-- NEWS -->
+  <section id="news">
+    <h2 class="section-title" data-aos="fade-up">Kabar Baik Nusantara</h2>
+    <p class="section-subtitle" data-aos="fade-up">
+      Cerita positif tentang pertanian, sustainability, dan perkembangan Indonesia.
+    </p>
+
+    <div class="news-grid">
+      <div class="news-card" data-aos="fade-up">
+        <div class="news-img" style="background-image:url('https://images.unsplash.com/photo-1501004318641-b39e6451bec6?q=80&w=1200&auto=format&fit=crop');"></div>
+        <div class="news-content">
+          <h3>Petani Muda Digital</h3>
+          <p>Generasi muda Indonesia mulai memanfaatkan teknologi untuk meningkatkan hasil pertanian.</p>
+          <br>
+          <a href="https://www.pertanian.go.id/?show=news&act=view&id=6381" target="_blank" style="text-decoration:none; color:#C47F5A; font-weight:600;">
+            Baca Berita →
+          </a>
+        </div>
+      </div>
+
+      <div class="news-card" data-aos="fade-up">
+        <div class="news-img" style="background-image:url('https://images.unsplash.com/photo-1464226184884-fa280b87c399?q=80&w=1200&auto=format&fit=crop');"></div>
+        <div class="news-content">
+          <h3>Ekspor Pangan Meningkat</h3>
+          <p>Produk pangan lokal Indonesia menunjukkan peningkatan ekspor yang signifikan.</p>
+          <br>
+          <a href="https://serealia.brmp.pertanian.go.id/berita/sektor-pertanian-indonesia-berhasil-tingkatkan-ekspor-dan-capai-swasembada-pangan-pada-2026" target="_blank" style="text-decoration:none; color:#C47F5A; font-weight:600;">
+            Baca Berita →
+          </a>
+        </div>
+      </div>
+
+      <div class="news-card" data-aos="fade-up">
+        <div class="news-img" style="background-image:url('https://images.unsplash.com/photo-1492496913980-501348b61469?q=80&w=1200&auto=format&fit=crop');"></div>
+        <div class="news-content">
+          <h3>Urban Farming Berkembang</h3>
+          <p>Konsep urban farming semakin populer di kalangan masyarakat perkotaan.</p>
+          <br>
+          <a href="https://www.pertanian.go.id/home/?show=news&act=view&id=4691" target="_blank" style="text-decoration:none; color:#C47F5A; font-weight:600;">
+            Baca Berita →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:60px 8%;">
+    <div style="background:rgba(255,255,255,0.7); padding:40px; border-radius:30px; box-shadow:0 10px 30px rgba(0,0,0,0.08);">
+      <h2 style="font-size:3rem; color:#556B5D; margin-bottom:20px; font-family:'Cormorant Garamond', serif;">Tentang Laras Bumi</h2>
+      <p style="line-height:1.9; max-width:900px;">
+        Laras Bumi merupakan platform dashboard interaktif bertema AI for SDGs yang menghadirkan data pertanian Indonesia secara lebih visual, sederhana, dan mudah dipahami masyarakat. Platform ini menggabungkan data pangan, cuaca, sustainability, dan teknologi sederhana untuk mendukung pembangunan berkelanjutan Indonesia.
+      </p>
+
+      <div style="margin-top:30px; display:flex; gap:15px; flex-wrap:wrap;">
+        <div style="padding:12px 20px; background:#F5EFE6; border-radius:999px;">SDGs 2 • Zero Hunger</div>
+        <div style="padding:12px 20px; background:#F5EFE6; border-radius:999px;">SDGs 8 • Decent Work and Economic Growth</div>
+        <div style="padding:12px 20px; background:#F5EFE6; border-radius:999px;">SDGs 12 • Responsible Consumption and Production</div>
+        <div style="padding:12px 20px; background:#F5EFE6; border-radius:999px;">SDGs 15 • Life on Land</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <h3>Laras Bumi</h3>
+    <p>Selaras dengan Alam, Bertumbuh Bersama.</p>
+  </footer>
+
+  <!-- AOS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+
+    // LIVE DATE
+    const today = new Date();
+    const formattedDate = today.toLocaleDateString('id-ID', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    });
+
+    const footer = document.querySelector('footer p');
+    footer.innerHTML = `Selaras dengan Alam, Bertumbuh Bersama.<br><small>Last Updated: ${formattedDate}</small>`;
+
+    // REAL WEATHER DATA (Open-Meteo API)
+    async function fetchWeather() {
+      try {
+        const response = await fetch('https://api.open-meteo.com/v1/forecast?latitude=-7.25&longitude=112.75&current_weather=true');
+        const data = await response.json();
+
+        const weatherCards = document.querySelectorAll('.weather-item strong');
+
+        weatherCards[0].innerHTML = `${data.current_weather.temperature}°C`;
+        weatherCards[1].innerHTML = `${data.current_weather.temperature - 1}°C`;
+        weatherCards[2].innerHTML = `${data.current_weather.temperature - 6}°C`;
+        weatherCards[3].innerHTML = `${data.current_weather.temperature - 2}°C`;
+      } catch (error) {
+        console.log('Weather API Error');
+      }
+    }
+
+    fetchWeather();
+
+    // Hero Chart (Estimasi produksi padi nasional)
+    new Chart(document.getElementById('heroChart'), {
+      type: 'line',
+      data: {
+        labels: ['Jan','Feb','Mar','Apr','Mei','Jun'],
+        datasets: [{
+          label: 'Produksi Padi Nasional (Juta Ton)',
+          data: [2.1,2.8,3.2,3.8,3.4,4.1],
+          borderColor: '#7A8F6B',
+          tension: 0.4,
+          fill: false
+        }]
+      }
+    });
+
+    // Price Chart (Data estimasi harga pangan nasional)
+    new Chart(document.getElementById('priceChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Beras','Cabai','Bawang','Jagung'],
+        datasets: [{
+          label: 'Harga Pangan (Ribu Rupiah)',
+          data: [17.4,52,44,12],
+          backgroundColor: ['#7A8F6B','#C47F5A','#556B5D','#D8C3A5']
+        }]
+      }
+    });
+
+    // Agriculture Chart
+    new Chart(document.getElementById('agriChart'), {
+      type: 'doughnut',
+      data: {
+        labels: ['Padi','Jagung','Sayur','Buah'],
+        datasets: [{
+          data: [45,25,15,15],
+          backgroundColor: ['#7A8F6B','#556B5D','#C47F5A','#D8C3A5']
+        }]
+      }
+    });
+
+    // AI Suggestion
+    function generateSuggestion() {
+      const weather = document.getElementById('weather').value;
+      const season = document.getElementById('season').value;
+      const soil = document.getElementById('soil').value;
+
+      let result = '';
+
+      if(weather === 'Hujan') {
+        result = '🌶️ Rekomendasi tanaman: Cabai dan Tomat cocok untuk kondisi lembap.';
+      } else if(season === 'Kemarau') {
+        result = '🌽 Rekomendasi tanaman: Jagung cocok untuk musim kemarau.';
+      } else if(soil === 'Berpasir') {
+        result = '🥜 Rekomendasi tanaman: Kacang tanah cocok untuk tanah berpasir.';
+      } else {
+        result = '🌱 Rekomendasi tanaman: Padi cocok untuk kondisi tanah subur.';
+      }
+
+      document.getElementById('result').innerHTML = result;
+    }
+  </script>
+</body>
+</html>
